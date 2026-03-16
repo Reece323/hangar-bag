@@ -73,7 +73,7 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 }
 .nav-logo-img {
   height: 42px; width: auto; object-fit: contain;
-  filter: brightness(0) invert(1); transition: filter 0.4s;
+  filter: brightness(0) invert(1); transition: filter 0.4s; /* white on dark hero */
 }
 nav.scrolled .nav-logo-img { filter: none; }
 .nav-links { display: flex; gap: 36px; align-items: center; }
@@ -161,7 +161,7 @@ nav.scrolled .nav-cta { color: #fff !important; }
 
 .hero-visual { animation: fadeInUp 1s ease-out 0.5s both; display: flex; align-items: center; justify-content: center; }
 .hero-logo-display { width: 100%; max-width: 440px; position: relative; }
-.hero-logo-display img { width: 100%; height: auto; filter: brightness(0) invert(1); opacity: 0.92; }
+.hero-logo-display img { width: 100%; height: auto; filter: brightness(0) invert(1); opacity: 1; }
 .hero-logo-glow {
   position: absolute; inset: -20%;
   background: radial-gradient(circle, rgba(176,176,176,0.1) 0%, transparent 65%);
