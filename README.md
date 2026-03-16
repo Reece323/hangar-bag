@@ -27,7 +27,7 @@ Hangar Bag is the first tool organizer designed to mount directly to your airpla
 
 This repository contains the source code for the official Hangar Bag product website.
 
-🔗 **Live Site:** [https://YOUR_Reece323.github.io/hangar-bag/](https://YOUR_USERNAME.github.io/hangar-bag/)
+🔗 **Live Site:** [https://Reece323.github.io/hangar-bag/](https://Reece323.github.io/hangar-bag/)
 
 > Replace `YOUR_USERNAME` with your GitHub username after deployment.
 
