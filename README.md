@@ -29,10 +29,6 @@ This repository contains the source code for the official Hangar Bag product web
 
 🔗 **Live Site:** [https://Reece323.github.io/hangar-bag/](https://Reece323.github.io/hangar-bag/)
 
-> Replace `YOUR_USERNAME` with your GitHub username after deployment.
-
----
-
 ## Tech Stack
 
 - **HTML5** — Semantic, accessible markup
