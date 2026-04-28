@@ -104,6 +104,7 @@ body{font-family:var(--font-body);background:var(--white);color:var(--text-dark)
   display: block;
   color: rgba(255,255,255,0.5);
   font-size: 0.7em;
+  margin-top: 16px;
 }
 
 /* Hero product image */
@@ -373,7 +374,7 @@ footer a {
   <div class="hero-inner">
     <div class="hero-left">
       <div class="hero-phone"><a href="tel:+15016171220">(501) 617-1220</a></div>
-      <p style="color:rgba(255,255,255,0.6);font-size:0.95rem;font-weight:600;margin-bottom:24px;letter-spacing:0.03em;">Al Morvin — Founder</p>
+      <p style="color:rgba(255,255,255,0.6);font-size:0.95rem;font-weight:600;margin-bottom:24px;letter-spacing:0.03em;">Al Morvin</p>
       <div class="hero-logo">
         <img src="assets/images/logo-main.png" alt="Hangar Bags™">
       </div>
@@ -393,7 +394,7 @@ footer a {
 <!-- ====== ABOUT ====== -->
 <section class="about">
   <div class="about-inner reveal">
-    <p>Hangar Bags™ attaches directly to your aircraft, keeping panels, fasteners, and tools right at the access point — off the ground and away from your feet. Protects valuable paint from scratches and damage. When the aircraft moves, your panels and fasteners move with it. Available in two sizes and tested up to 3 lbs, it's designed to stay secure even in windy environments.</p>
+    <p>Hangar Bags™ attaches directly to your aircraft, keeping panels, fasteners, and tools right at the access point — off the ground and away from your feet. Protects valuable paint from scratches and damage. When the aircraft moves, your panels and fasteners move with it. Available in two sizes and tested up to 3 lbs, designed to stay secure even in windy environments.</p>
   </div>
 </section>
 
@@ -415,20 +416,30 @@ footer a {
 <section class="demo">
   <div class="demo-inner">
     <div class="demo-video reveal">
-      <video autoplay muted loop playsinline>
-        <source src="assets/images/demo.mp4" type="video/mp4">
-      </video>
+      <div style="position:relative;">
+        <video id="demoVid" autoplay muted loop playsinline>
+          <source src="assets/images/demo.mp4" type="video/mp4">
+        </video>
+        <button id="muteBtn" onclick="toggleMute()" style="position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,0.6);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;" aria-label="Toggle audio">
+          <svg id="muteIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+          <svg id="unmuteIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+        </button>
+      </div>
     </div>
     <div class="demo-points reveal">
       <h2>Why Hangar Bags?</h2>
       <ul class="demo-list">
+        <li>
+          <span class="icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></span>
+          Quality control — no chance of releasing an aircraft without all panels
+        </li>
         <li>
           <span class="icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
           Panels and fasteners stay with the access point — no searching the shop floor
         </li>
         <li>
           <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-          Protects your aircraft's paint from scratches and dings
+          Protects the aircraft's paint from scratches and dings
         </li>
         <li>
           <span class="icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
@@ -441,6 +452,10 @@ footer a {
         <li>
           <span class="icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           Aircraft moves? Your panels and fasteners move with it
+        </li>
+        <li>
+          <span class="icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span>
+          Saves money with faster assembly
         </li>
       </ul>
     </div>
@@ -455,7 +470,7 @@ footer a {
     </div>
     <div class="founder-text">
       <p class="founder-quote">I've been doing this for 40 years. I built this out of necessity. I want you to have it as well.</p>
-      <p class="founder-name">Al Morvin — Founder, Hangar Bags™</p>
+      <p class="founder-name">Al Morvin, Hangar Bags™</p>
     </div>
   </div>
 </section>
@@ -469,6 +484,16 @@ footer a {
 </footer>
 
 <script>
+// Mute toggle
+function toggleMute() {
+  const vid = document.getElementById('demoVid');
+  const muteIcon = document.getElementById('muteIcon');
+  const unmuteIcon = document.getElementById('unmuteIcon');
+  vid.muted = !vid.muted;
+  muteIcon.style.display = vid.muted ? 'block' : 'none';
+  unmuteIcon.style.display = vid.muted ? 'none' : 'block';
+}
+
 // Scroll reveal
 const revealEls = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
