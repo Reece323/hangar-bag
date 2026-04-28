@@ -4,216 +4,326 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hangar Bags™ — Clean Up Your Shop. Save Money.</title>
-<meta name="description" content="Hangar Bags attaches to your aircraft to keep panels, fasteners, and tools off the ground and out of the way. Tested up to 3 lbs. Two sizes available.">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="description" content="Hangar Bags attaches to your aircraft to keep panels, fasteners, and tools organized. Available in two sizes, tested up to 3 lbs.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --navy: #003b6f;
-  --navy-deep: #002a52;
-  --silver: #b0b0b0;
+  --navy-dark: #001a33;
+  --navy: #003366;
+  --navy-mid: #004a8f;
+  --navy-light: #0060b8;
   --white: #ffffff;
-  --off-white: #f7f8fa;
-  --text: #1a1a2e;
-  --text-light: #555;
-  --font-display: 'Barlow Condensed', sans-serif;
-  --font-body: 'Barlow', sans-serif;
+  --off-white: #f4f6f9;
+  --gray-light: #e8ecf1;
+  --text-dark: #111827;
+  --text-mid: #475569;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Libre Franklin', sans-serif;
 }
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font-body);
-  background: var(--white);
-  color: var(--text);
-  -webkit-font-smoothing: antialiased;
-}
-
-/* === TOP BAR === */
-.top-bar {
-  background: var(--navy);
-  padding: 12px 24px;
-  text-align: center;
-}
-.top-bar a {
-  font-family: var(--font-display);
-  font-size: clamp(1.4rem, 3.5vw, 2rem);
-  font-weight: 900;
-  color: var(--white);
-  text-decoration: none;
-  letter-spacing: 0.04em;
-}
-.top-bar a:hover { text-decoration: underline; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--white);color:var(--text-dark);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
 /* === HERO === */
 .hero {
-  text-align: center;
-  padding: 60px 24px 40px;
-  background: var(--white);
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(170deg, var(--navy-dark) 0%, var(--navy) 35%, var(--navy-mid) 70%, var(--navy-light) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+/* Subtle grid overlay */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+/* Bottom fade to white */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 180px;
+  background: linear-gradient(to top, var(--white), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+.hero-inner {
+  position: relative;
+  z-index: 3;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 32px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.hero-left {
+  animation: slideUp 0.8s ease-out both;
 }
 .hero-phone {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 6vw, 3.8rem);
-  font-weight: 900;
-  color: var(--navy);
-  letter-spacing: 0.03em;
-  margin-bottom: 32px;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--white);
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
 }
 .hero-phone a {
-  color: var(--navy);
+  color: var(--white);
   text-decoration: none;
+  border-bottom: 3px solid rgba(255,255,255,0.3);
+  padding-bottom: 4px;
+  transition: border-color 0.3s;
 }
-.hero-phone a:hover { text-decoration: underline; }
+.hero-phone a:hover { border-color: var(--white); }
 .hero-logo {
-  max-width: 480px;
-  width: 90%;
-  margin: 0 auto 40px;
+  max-width: 360px;
+  margin-bottom: 36px;
 }
-.hero-logo img { width: 100%; height: auto; }
+.hero-logo img {
+  width: 100%;
+  height: auto;
+  filter: brightness(0) invert(1);
+  drop-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
 .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(2.6rem, 7vw, 5rem);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.01em;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  color: var(--white);
   text-transform: uppercase;
-  color: var(--text);
-  margin-bottom: 8px;
 }
 .hero-headline .line2 {
+  display: block;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.7em;
+}
+
+/* Hero product image */
+.hero-right {
+  animation: slideUp 0.8s ease-out 0.2s both;
+}
+.hero-product {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  border: 3px solid rgba(255,255,255,0.1);
+}
+.hero-product img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+}
+
+/* === PRODUCT GALLERY === */
+.gallery {
+  padding: 80px 32px;
+  background: var(--white);
+}
+.gallery-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.gallery-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.gallery-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   color: var(--navy);
 }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.gallery-img {
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+.gallery-img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+.gallery-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-/* === ABOUT === */
+/* === ABOUT TEXT === */
 .about {
-  max-width: 720px;
+  padding: 60px 32px;
+  background: var(--off-white);
+}
+.about-inner {
+  max-width: 760px;
   margin: 0 auto;
-  padding: 40px 24px 60px;
   text-align: center;
 }
-.about p {
-  font-size: clamp(1rem, 2.2vw, 1.15rem);
-  line-height: 1.8;
-  color: var(--text-light);
+.about-inner p {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--text-mid);
   font-weight: 500;
 }
-.specs {
-  display: inline-flex;
-  gap: 32px;
-  margin-top: 32px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.spec {
-  background: var(--navy);
-  color: var(--white);
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.1rem;
-  padding: 14px 28px;
-  border-radius: 6px;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-}
 
-/* === VIDEO === */
-.video-section {
-  background: var(--off-white);
-  padding: 60px 24px;
+/* === VIDEO + BULLETS (two column) === */
+.demo {
+  padding: 80px 32px;
+  background: var(--white);
 }
-.video-wrap {
-  max-width: 800px;
+.demo-inner {
+  max-width: 1200px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.demo-video {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 40px rgba(0,30,60,0.12);
 }
-.video-wrap video {
+.demo-video video {
   width: 100%;
   display: block;
 }
-
-/* === WHY SECTION === */
-.why {
-  padding: 60px 24px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-.why-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-.why-item {
-  border-left: 4px solid var(--navy);
-  padding: 20px 20px 20px 24px;
-  background: var(--off-white);
-  border-radius: 0 8px 8px 0;
-}
-.why-item h3 {
+.demo-points h2 {
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 800;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--navy);
-  margin-bottom: 6px;
-  letter-spacing: 0.02em;
+  margin-bottom: 28px;
 }
-.why-item p {
-  font-size: 0.92rem;
-  color: var(--text-light);
+.demo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.demo-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 1rem;
   line-height: 1.6;
+  color: var(--text-mid);
   font-weight: 500;
+}
+.demo-list li .icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background: var(--navy);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.demo-list li .icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--white);
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* === FOUNDER === */
 .founder {
-  background: var(--navy);
+  background: linear-gradient(135deg, var(--navy-dark), var(--navy));
   color: var(--white);
-  padding: 60px 24px;
+  padding: 80px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.founder::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+  pointer-events: none;
 }
 .founder-inner {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 48px;
+  position: relative;
+  z-index: 2;
 }
 .founder-photo {
   flex-shrink: 0;
-  width: 240px;
-  height: 240px;
-  border-radius: 12px;
+  width: 260px;
+  height: 260px;
+  border-radius: 16px;
   overflow: hidden;
-  border: 4px solid rgba(255,255,255,0.2);
+  border: 4px solid rgba(255,255,255,0.15);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
 }
 .founder-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+.founder-text {}
 .founder-quote {
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 3vw, 1.8rem);
-  font-weight: 700;
-  line-height: 1.4;
-  font-style: italic;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  margin-bottom: 16px;
 }
 .founder-quote::before { content: '\201C'; }
 .founder-quote::after { content: '\201D'; }
+.founder-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
 
 /* === FOOTER === */
 footer {
   text-align: center;
-  padding: 32px 24px;
-  border-top: 1px solid #e0e0e0;
+  padding: 40px 24px;
+  background: var(--white);
+  border-top: 1px solid var(--gray-light);
 }
 .footer-logo {
-  width: 120px;
-  margin: 0 auto 12px;
+  width: 100px;
+  margin: 0 auto 16px;
 }
 .footer-logo img { width: 100%; height: auto; }
 footer p {
-  font-size: 0.82rem;
-  color: var(--silver);
+  font-size: 0.8rem;
+  color: var(--text-mid);
 }
 footer a {
   color: var(--navy);
@@ -221,84 +331,137 @@ footer a {
   font-weight: 600;
 }
 
+/* === ANIMATIONS === */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* === RESPONSIVE === */
-@media (max-width: 640px) {
-  .why-grid { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 100px;
+    gap: 40px;
+  }
+  .hero-logo { margin: 0 auto 36px; }
+  .hero-product img { height: 350px; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .demo-inner { grid-template-columns: 1fr; }
   .founder-inner { flex-direction: column; text-align: center; }
-  .founder-photo { width: 180px; height: 180px; margin: 0 auto; }
+  .founder-photo { width: 200px; height: 200px; margin: 0 auto; }
+}
+@media (max-width: 600px) {
+  .hero-inner { padding: 80px 20px 60px; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .hero-product img { height: 280px; }
 }
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="top-bar">
-  <a href="tel:+15016171220">Call Now: (501) 617-1220</a>
-</div>
-
-<!-- HERO -->
+<!-- ====== HERO ====== -->
 <section class="hero">
-  <div class="hero-phone"><a href="tel:+15016171220">(501) 617-1220</a></div>
-  <div class="hero-logo">
-    <img src="assets/images/logo-main.png" alt="Hangar Bags™">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-phone"><a href="tel:+15016171220">(501) 617-1220</a></div>
+      <div class="hero-logo">
+        <img src="assets/images/logo-main.png" alt="Hangar Bags™">
+      </div>
+      <h1 class="hero-headline">
+        Clean up your shop
+        <span class="line2">Save Money</span>
+      </h1>
+    </div>
+    <div class="hero-right">
+      <div class="hero-product">
+        <img src="assets/images/product-4.jpg" alt="Hangar Bags in use on aircraft wing">
+      </div>
+    </div>
   </div>
-  <h1 class="hero-headline">
-    Clean up your shop<br>
-    <span class="line2">Save Money</span>
-  </h1>
 </section>
 
-<!-- ABOUT -->
+<!-- ====== ABOUT ====== -->
 <section class="about">
-  <p>Hangar Bags™ attaches directly to your aircraft, keeping panels, fasteners, and tools right at the access point — off the ground, off the floor, and away from your feet. Protects your valuable paint from scratches and damage. When the aircraft moves, your panels and fasteners move with it. Designed to stay secure even in windy hangar environments.</p>
-  <div class="specs">
-    <div class="spec">Tested up to 3 lbs</div>
-    <div class="spec">2 Sizes Available</div>
+  <div class="about-inner reveal">
+    <p>Hangar Bags™ attaches directly to your aircraft, keeping panels, fasteners, and tools right at the access point — off the ground and away from your feet. Protects valuable paint from scratches and damage. When the aircraft moves, your panels and fasteners move with it. Available in two sizes and tested up to 3 lbs, it's designed to stay secure even in windy environments.</p>
   </div>
 </section>
 
-<!-- VIDEO -->
-<section class="video-section">
-  <div class="video-wrap">
-    <video autoplay muted loop playsinline>
-      <source src="assets/images/demo.mp4" type="video/mp4">
-    </video>
-  </div>
-</section>
-
-<!-- WHY -->
-<section class="why">
-  <div class="why-grid">
-    <div class="why-item">
-      <h3>Panels Stay Put</h3>
-      <p>Panels and fasteners stay with the access point — no searching the shop floor.</p>
+<!-- ====== GALLERY ====== -->
+<section class="gallery">
+  <div class="gallery-inner">
+    <div class="gallery-header reveal">
+      <h2>See it in action</h2>
     </div>
-    <div class="why-item">
-      <h3>Protect the Paint</h3>
-      <p>Keeps parts off the aircraft surface. No scratches. No dings.</p>
-    </div>
-    <div class="why-item">
-      <h3>Safe Work Area</h3>
-      <p>Nothing under your feet or under the airplane. Fewer tripping hazards.</p>
-    </div>
-    <div class="why-item">
-      <h3>Wind Secure</h3>
-      <p>Designed to hold tight in open hangars and windy ramp environments.</p>
+    <div class="gallery-grid">
+      <div class="gallery-img reveal"><img src="assets/images/product-1.jpg" alt="Hangar Bag with panel and fasteners attached to aircraft"></div>
+      <div class="gallery-img reveal"><img src="assets/images/product-2.jpg" alt="Multiple Hangar Bags holding panels on aircraft belly"></div>
+      <div class="gallery-img reveal"><img src="assets/images/product-3.jpg" alt="Hangar Bag in hangar environment"></div>
     </div>
   </div>
 </section>
 
-<!-- FOUNDER -->
+<!-- ====== VIDEO + BULLETS ====== -->
+<section class="demo">
+  <div class="demo-inner">
+    <div class="demo-video reveal">
+      <video autoplay muted loop playsinline>
+        <source src="assets/images/demo.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="demo-points reveal">
+      <h2>Why Hangar Bags?</h2>
+      <ul class="demo-list">
+        <li>
+          <span class="icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Panels and fasteners stay with the access point — no searching the shop floor
+        </li>
+        <li>
+          <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          Protects your aircraft's paint from scratches and dings
+        </li>
+        <li>
+          <span class="icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+          Nothing under your feet or under the airplane — fewer hazards
+        </li>
+        <li>
+          <span class="icon"><svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></span>
+          Holds tight in open hangars and windy ramp environments
+        </li>
+        <li>
+          <span class="icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          Aircraft moves? Your panels and fasteners move with it
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOUNDER ====== -->
 <section class="founder">
-  <div class="founder-inner">
+  <div class="founder-inner reveal">
     <div class="founder-photo">
-      <img src="assets/images/founder.jpg" alt="Hangar Bags founder">
+      <img src="assets/images/founder.jpg" alt="Hangar Bags founder holding the product">
     </div>
-    <p class="founder-quote">I've been doing this for 40 years. I built this out of necessity. I want you to have it as well.</p>
+    <div class="founder-text">
+      <p class="founder-quote">I've been doing this for 40 years. I built this out of necessity. I want you to have it as well.</p>
+      <p class="founder-name">Founder, Hangar Bags™</p>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ====== FOOTER ====== -->
 <footer>
   <div class="footer-logo">
     <img src="assets/images/logo-small.png" alt="Hangar Bags™">
@@ -306,5 +469,18 @@ footer a {
   <p>&copy; 2026 Hangar Bags™. All rights reserved.</p>
 </footer>
 
+<script>
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+revealEls.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
